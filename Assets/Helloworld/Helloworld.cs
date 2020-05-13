@@ -12,7 +12,7 @@ using System.Diagnostics;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
-
+using System.Threading.Tasks;
 
 
 // 跑不同仔细看文档Doc/example.md
@@ -74,6 +74,10 @@ public class Helloworld : MonoBehaviour {
 
         // 
         // StartCoroutine(this.DownloadFile("https://news.163.com/20/0513/10/FCGJENDE0001899O.html"));
+
+        UnityEngine.Debug.Log("test async errror");
+        Method1();
+        Method2();
     }
 
 
@@ -108,4 +112,34 @@ public class Helloworld : MonoBehaviour {
             yield break;
         }
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    [IFix.Patch]
+    public static async Task Method1()
+    {  
+        await Task.Run(() =>
+        {  
+            for (int i = 0; i < 10; i++)
+            {  
+                UnityEngine.Debug.Log("Method 1 change!");
+            }  
+        });  
+    }  
+    
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [IFix.Patch]
+    public static void Method2()
+    {  
+        for (int i = 0; i < 25; i++)
+        {  
+            UnityEngine.Debug.Log(" Method 2 change!");  
+        }  
+    }  
 }
