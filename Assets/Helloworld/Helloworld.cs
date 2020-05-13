@@ -9,6 +9,11 @@ using UnityEngine;
 using IFix.Core;
 using System.IO;
 using System.Diagnostics;
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;
+
+
 
 // 跑不同仔细看文档Doc/example.md
 public class Helloworld : MonoBehaviour {
@@ -16,6 +21,7 @@ public class Helloworld : MonoBehaviour {
     // check and load patchs
     void Start () {
         VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
+        VirtualMachine.Info("xxxx");
         //try to load patch for Assembly-CSharp.dll
         var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
         if (patch != null)
@@ -34,7 +40,7 @@ public class Helloworld : MonoBehaviour {
             PatchManager.Load(new MemoryStream(patch.bytes));
             UnityEngine.Debug.Log("patch Assembly-CSharp-firstpass, using " + sw.ElapsedMilliseconds + " ms");
         }
-
+        
         test();
     }
 
@@ -42,7 +48,8 @@ public class Helloworld : MonoBehaviour {
     void test()
     {
         var calc = new IFix.Test.Calculator();
-        //test calc.Add
+        calc.RonTestFun();
+        calc.RonLogItemInfo();
         UnityEngine.Debug.Log("10 + 9 = " + calc.Add(10, 9));
         //test calc.Sub
         UnityEngine.Debug.Log("10 - 2 = " + calc.Sub(10, 2));
@@ -64,5 +71,41 @@ public class Helloworld : MonoBehaviour {
         UnityEngine.Debug.Log("UNITY_ANDROID");
 #endif
 #endif
+
+        // 
+        // StartCoroutine(this.DownloadFile("https://news.163.com/20/0513/10/FCGJENDE0001899O.html"));
+    }
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
+    // [IFix.Patch]
+    public IEnumerator DownloadFile(string url)
+    {
+        // UnityEngine.Debug.Log($"downloadFile 2");
+
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        request.timeout = 10;
+        yield return request.SendWebRequest();
+        if(request.error != null)     
+        {
+            UnityEngine.Debug.Log($"加载出错： {request.error}, url is: {url}");
+            request.Dispose();
+            yield break;
+        }
+        
+        if(request.isDone)
+        {
+            UnityEngine.Debug.Log($"done ======> {request.downloadHandler.data}");
+
+            string path = "xxxxx";
+            File.WriteAllBytes(path, request.downloadHandler.data);
+            request.Dispose();
+            yield break;
+        }
     }
 }

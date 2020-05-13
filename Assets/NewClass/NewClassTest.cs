@@ -48,48 +48,48 @@ public class SubSystem1 : ISubSystem
     }
 }
 
-[IFix.Interpret]
-public class NewBehaviourScript : IMonoBehaviour
-{
-    private int tick = 0;
+// [IFix.Interpret]
+// public class NewBehaviourScript : IMonoBehaviour
+// {
+//     private int tick = 0;
 
-    public void Start()
-    {
-        Debug.Log("NewBehaviourScript.Start");
-    }
+//     public void Start()
+//     {
+//         Debug.Log("NewBehaviourScript.Start");
+//     }
 
-    public void Update()
-    {
-        if (tick++ % 60 == 0)
-        {
-            Debug.Log("NewBehaviourScript.Update");
-        }
-    }
-}
+//     public void Update()
+//     {
+//         if (tick++ % 60 == 0)
+//         {
+//             Debug.Log("NewBehaviourScript.Update");
+//         }
+//     }
+// }
+// 
+// [IFix.Interpret]
+// public class SubSystem2 : ISubSystem
+// {
+//     public bool running { get { return true; } }
 
-[IFix.Interpret]
-public class SubSystem2 : ISubSystem
-{
-    public bool running { get { return true; } }
+//     public void Start()
+//     {
+//         Debug.Log("SubSystem2.Start, create GameObject and attach a NewBehaviourScript");
+//         var go = new GameObject("hehe");
+//         var behaviour = go.AddComponent(typeof(VMBehaviourScript)) as VMBehaviourScript;
+//         behaviour.VMMonoBehaviour = new NewBehaviourScript();
+//     }
 
-    public void Start()
-    {
-        Debug.Log("SubSystem2.Start, create GameObject and attach a NewBehaviourScript");
-        var go = new GameObject("hehe");
-        var behaviour = go.AddComponent(typeof(VMBehaviourScript)) as VMBehaviourScript;
-        behaviour.VMMonoBehaviour = new NewBehaviourScript();
-    }
+//     public void Stop()
+//     {
+//         Debug.Log("SubSystem2.Stop");
+//     }
 
-    public void Stop()
-    {
-        Debug.Log("SubSystem2.Stop");
-    }
-
-    public void Destroy()
-    {
-        Debug.Log("SubSystem2.Destroy");
-    }
-}
+//     public void Destroy()
+//     {
+//         Debug.Log("SubSystem2.Destroy");
+//     }
+// }
 
 public class NewClassTest : MonoBehaviour
 {
@@ -97,6 +97,7 @@ public class NewClassTest : MonoBehaviour
 
     void Awake()
     {
+        VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
         var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
         if (patch != null)
         {
@@ -112,7 +113,7 @@ public class NewClassTest : MonoBehaviour
     private void Init()
     {
         subsystems.Add(new SubSystem1());
-        subsystems.Add(new SubSystem2());
+        // subsystems.Add(new SubSystem2());
     }
 
 

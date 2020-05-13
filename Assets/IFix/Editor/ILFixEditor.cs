@@ -685,20 +685,38 @@ namespace IFix.Editor
         //由于目前不支持泛型函数的patch，所以函数签名为方法名+参数类型
         static void writeMethods(BinaryWriter writer, List<MethodInfo> methods)
         {
+            // foreach(MethodInfo tmpInfo in methods)
+            // {
+            //     UnityEngine.Debug.Log($"MethodInfo ===> {tmpInfo.Name}");
+            // }
+
             var methodGroups = methods.GroupBy(m => m.DeclaringType).ToList();
             writer.Write(methodGroups.Count);
             foreach (var methodGroup in methodGroups)
             {
+                // 这个是类的名字.例如IFix.Test.Calculator
                 writer.Write(GetCecilTypeName(methodGroup.Key));
+
+                // 表示这个类里,带Patch标签的有几个方法
                 writer.Write(methodGroup.Count());
+                
                 foreach (var method in methodGroup)
                 {
+                    // 写入方法名
                     writer.Write(method.Name);
+
+                    // 写入返回值
                     writer.Write(GetCecilTypeName(method.ReturnType));
+
+                    // 写入几个参数
                     writer.Write(method.GetParameters().Length);
+
                     foreach (var parameter in method.GetParameters())
                     {
+                        // 写入是否out
                         writer.Write(parameter.IsOut);
+
+                        // 写入参数类型
                         writer.Write(GetCecilTypeName(parameter.ParameterType));
                     }
                 }
@@ -757,9 +775,11 @@ namespace IFix.Editor
         /// <param name="assemblyCSharpPath">程序集路径</param>
         /// <param name="corePath">IFix.Core.dll所在路径</param>
         /// <param name="patchPath">生成的patch的保存路径</param>
-        public static void GenPatch(string assembly, string assemblyCSharpPath
-            = "./Library/ScriptAssemblies/Assembly-CSharp.dll", 
-            string corePath = "./Assets/Plugins/IFix.Core.dll", string patchPath = "Assembly-CSharp.patch.bytes")
+        
+        public static void GenPatch(string assembly, 
+            string assemblyCSharpPath = "./Library/ScriptAssemblies/Assembly-CSharp.dll", 
+            string corePath = "./Assets/Plugins/IFix.Core.dll", 
+            string patchPath = "Assembly-CSharp.patch.bytes")
         {
             var patchMethods = Configure.GetTagMethods(typeof(PatchAttribute), assembly).ToList();
             var genericMethod = patchMethods.FirstOrDefault(m => hasGenericParameter(m));
@@ -800,10 +820,18 @@ namespace IFix.Editor
             {
                 try
                 {
-                    //UnityEngine.Debug.Log("searchPath:" + path);
+                    // UnityEngine.Debug.Log("searchPath:" + path);
                     args.Add(path);
                 }
                 catch { }
+            }
+
+            foreach(string path in args)
+            {
+                if(path.StartsWith("/Applications") == true || path.StartsWith("/Users/") == true)
+                    continue;
+
+                UnityEngine.Debug.LogWarning($"path ==> {path}");
             }
 
             CallIFix(args);
