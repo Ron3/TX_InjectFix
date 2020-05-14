@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 /// </summary>
 public class Init : MonoBehaviour 
 {
+    TestView ctr = new TestView("tx", "view");
     /// <summary>
     /// 
     /// </summary>
@@ -23,7 +24,10 @@ public class Init : MonoBehaviour
         // 1, 先初始化fairyGUI
         FairyGUIHelper.Init();
 
-        // 2, 
+        // 2, 创建fairyGUI的界面
+        ctr.Show();
+
+        // 3, 
         Common.Debug($"init start");
 
     }
@@ -31,6 +35,6 @@ public class Init : MonoBehaviour
 
     public void Update() 
     {
-
+        
     }
 }

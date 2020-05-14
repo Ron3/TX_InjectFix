@@ -11,7 +11,8 @@ using System.Collections.Generic;
 public static class Common
 {   
     public static Dictionary<string, AssetBundle> AssetBundleDict = new Dictionary<string, AssetBundle>();
-    private static Dictionary<string, Dictionary<string, UnityEngine.Object>> ResourceCache = new Dictionary<string, Dictionary<string, UnityEngine.Object>>();
+    public static Dictionary<string, AssetBundle> AssetBundleDictForNameKey = new Dictionary<string, AssetBundle>();
+    public static Dictionary<string, Dictionary<string, UnityEngine.Object>> ResourceCache = new Dictionary<string, Dictionary<string, UnityEngine.Object>>();
 
     /// <summary>
     /// 
@@ -34,6 +35,19 @@ public static class Common
 
     
     /// <summary>
+    /// 获取已经加载的ab包
+    /// </summary>
+    /// <param name="abName"></param>
+    /// <returns></returns>
+    public static AssetBundle GetAssetBundle(string abName)
+    {
+        AssetBundle bundle = null; 
+        AssetBundleDictForNameKey.TryGetValue(abName, out bundle);
+        return bundle;
+    }
+
+
+    /// <summary>
     /// 加载ab包
     /// </summary>
     /// <param name="abName"></param>
@@ -45,19 +59,19 @@ public static class Common
 
         if(assetBundle == null)
         {
-#if UNITY_EDITOR
-            string[] realPath = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
-            foreach(string tmpResourcePath in realPath)
-            {
-                Common.Debug($"Editor Load AB {abName}, Asset -> {tmpResourcePath}");
-                string assetName = Path.GetFileNameWithoutExtension(tmpResourcePath);
-                UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tmpResourcePath);
+// #if UNITY_EDITOR
+//             string[] realPath = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
+//             foreach(string tmpResourcePath in realPath)
+//             {
+//                 Common.Debug($"Editor Load AB {abName}, Asset -> {tmpResourcePath}");
+//                 string assetName = Path.GetFileNameWithoutExtension(tmpResourcePath);
+//                 UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tmpResourcePath);
                 
-                AddResource(abName, tmpResourcePath, resource);
-            }
+//                 AddResource(abName, tmpResourcePath, resource);
+//             }
 
-            return true;
-#endif
+//             return true;
+// #endif
             _LoadAssetBundle(abName, path);
         }
 
@@ -71,11 +85,18 @@ public static class Common
     /// <param name="abName"></param>
     public static bool _LoadAssetBundle(string abName, string path)
     {
+        Common.Debug($"real load ab. path ==> {path}");
         AssetBundle assetBundle = AssetBundle.LoadFromFile(path);
         if(assetBundle == null)
+        {
+            Common.Debug($"real load ab failed");
             return false;
+        }
 
+        
         AssetBundleDict[path] = assetBundle;
+        AssetBundleDictForNameKey[abName] = assetBundle;
+        Common.Debug($"AssetBundleDict ==> {AssetBundleDict.Count}");
 
         // 把每一个对象资源都加载进来放到cache里面去
         string[] assetPaths = assetBundle.GetAllAssetNames();
