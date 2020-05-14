@@ -59,19 +59,19 @@ public static class Common
 
         if(assetBundle == null)
         {
-// #if UNITY_EDITOR
-//             string[] realPath = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
-//             foreach(string tmpResourcePath in realPath)
-//             {
-//                 Common.Debug($"Editor Load AB {abName}, Asset -> {tmpResourcePath}");
-//                 string assetName = Path.GetFileNameWithoutExtension(tmpResourcePath);
-//                 UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tmpResourcePath);
+#if UNITY_EDITOR
+            string[] realPath = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
+            foreach(string tmpResourcePath in realPath)
+            {
+                Common.Debug($"Editor Load AB {abName}, Asset -> {tmpResourcePath}");
+                string assetName = Path.GetFileNameWithoutExtension(tmpResourcePath);
+                UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tmpResourcePath);
                 
-//                 AddResource(abName, tmpResourcePath, resource);
-//             }
+                AddResource(abName, tmpResourcePath, resource);
+            }
 
-//             return true;
-// #endif
+            return true;
+#endif
             _LoadAssetBundle(abName, path);
         }
 

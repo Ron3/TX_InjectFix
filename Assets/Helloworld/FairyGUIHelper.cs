@@ -17,12 +17,12 @@ public static class  FairyGUIHelper
 
         GRoot.inst.SetContentScaleFactor(1334, 750, UIContentScaler.ScreenMatchMode.MatchWidthOrHeight);
 			
-// #if UNITY_EDITOR
+#if UNITY_EDITOR
 
-//             Common.Debug("Editor模式. 采用资源加载");
-//             string path = "Assets/Res/fairygui/tx";
-//             UIPackage.AddPackage(path);
-// #else           
+            Common.Debug("Editor模式. 采用资源加载");
+            string path = "Assets/Res/fairygui/tx";
+            UIPackage.AddPackage(path);
+#else           
         
             Common.Debug("采用ab包加载FairyGUI包资源");
             string descBundleName = "tx_injectfixfgui_des.unity3d";
@@ -40,7 +40,7 @@ public static class  FairyGUIHelper
             else{
                 Common.Debug("fairyGUI加载 ab包成功 ..");
             }
-// #endif        
+#endif        
         
         // 2.1 注册我们自己的loader
         
