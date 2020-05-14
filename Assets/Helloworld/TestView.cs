@@ -59,7 +59,16 @@ public class TestView
     public void InitUI()
     {
         GButton btn = this.view.GetChild("btn1").asButton;
-        Common.Debug($"btn ==> {btn.name}");
+        btn.onClick.Add(this.OnBtnClick);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnBtnClick(EventContext context)
+    {
+        
     }
 }
 
