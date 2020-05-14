@@ -3,6 +3,10 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
 
 public static class Common
 {   
@@ -28,7 +32,7 @@ public static class Common
         UnityEngine.Debug.LogError(msg);
     }
 
-
+    
     /// <summary>
     /// 加载ab包
     /// </summary>
@@ -41,21 +45,46 @@ public static class Common
 
         if(assetBundle == null)
         {
-            assetBundle = AssetBundle.LoadFromFile(path);
-            if(assetBundle == null)
-                return false;
-
-            AssetBundleDict[path] = assetBundle;
-
-            // 把每一个对象资源都加载进来放到cache里面去
-            string[] assetPaths = assetBundle.GetAllAssetNames();
-            foreach(string resPath in assetPaths)
+#if UNITY_EDITOR
+            string[] realPath = AssetDatabase.GetAssetPathsFromAssetBundle(abName);
+            foreach(string tmpResourcePath in realPath)
             {
-                Common.Debug($"Load AB {abName}, Asset -> {resPath}");
-                UnityEngine.Object asset = assetBundle.LoadAsset(resPath);
-                // 完整的路径作为key
-                AddResource(abName, resPath, asset);
+                Common.Debug($"Editor Load AB {abName}, Asset -> {tmpResourcePath}");
+                string assetName = Path.GetFileNameWithoutExtension(tmpResourcePath);
+                UnityEngine.Object resource = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tmpResourcePath);
+                
+                AddResource(abName, tmpResourcePath, resource);
             }
+
+            return true;
+#endif
+            _LoadAssetBundle(abName, path);
+        }
+
+        return true;
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="abName"></param>
+    public static bool _LoadAssetBundle(string abName, string path)
+    {
+        AssetBundle assetBundle = AssetBundle.LoadFromFile(path);
+        if(assetBundle == null)
+            return false;
+
+        AssetBundleDict[path] = assetBundle;
+
+        // 把每一个对象资源都加载进来放到cache里面去
+        string[] assetPaths = assetBundle.GetAllAssetNames();
+        foreach(string resPath in assetPaths)
+        {
+            Common.Debug($"Load AB {abName}, Asset -> {resPath}");
+            UnityEngine.Object asset = assetBundle.LoadAsset(resPath);
+            // 完整的路径作为key
+            AddResource(abName, resPath, asset);
         }
 
         return true;

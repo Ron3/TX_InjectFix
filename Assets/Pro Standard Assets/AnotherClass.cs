@@ -29,8 +29,10 @@ public class AnotherClass
             sum += func(pass);
             Debug.Log(string.Format("i = {0}, sum = {1}", i, sum));
         }
+        
+        sum += 1;
         return sum;
     }
-       
+
 }
 

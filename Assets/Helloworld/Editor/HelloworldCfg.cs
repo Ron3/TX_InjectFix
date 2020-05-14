@@ -23,6 +23,7 @@ public class HelloworldCfg
             {
                 typeof(Helloworld),
                 typeof(IFix.Test.Calculator),
+                typeof(BPActor),
                 //AnotherClass在Pro Standard Assets下，会编译到Assembly-CSharp-firstpass.dll下，用来演示多dll的修复
                 typeof(AnotherClass),
             };

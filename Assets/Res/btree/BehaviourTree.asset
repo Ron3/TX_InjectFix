@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: BehaviourTree
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":432.0,"y":272.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_condition":{"method":{"_baseInfo":"BPActor|GetHp2|System.Int32","_paramsInfo":""},"parameters":[],"comparison":2,"checkValue":{"_type":"System.Int32","_value":{"$content":200,"$type":"System.Int32"}},"$type":"NodeCanvas.Tasks.Conditions.CheckFunction_Multiplatform"},"_position":{"x":272.3879,"y":398.5716},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"1"},{"_action":{"log":{"_value":"\u8840\u91cf\u4f4e\u4e8e200"},"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":243.3879,"y":538.5349},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_condition":{"method":{"_baseInfo":"BPActor|get_Atk|System.Int32","_paramsInfo":""},"checkValue":{"_type":"System.Int32","_value":{"$content":15,"$type":"System.Int32"}},"comparison":2,"$type":"NodeCanvas.Tasks.Conditions.CheckProperty_Multiplatform"},"_position":{"x":600.0,"y":373.0},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"3"},{"_action":{"log":{"_value":"\u653b\u51fb\u5c0f\u4e8e15"},"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":597.0,"y":495.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences: []
+  _graphSource:
+    _version: 3.05
+    _category: 
+    _comments: 
+    _translation: {x: 95.63796, y: 80.65672}
+    _zoomFactor: 0.8059248
+  _haltSerialization: 0

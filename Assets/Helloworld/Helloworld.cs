@@ -42,6 +42,8 @@ public class Helloworld : MonoBehaviour {
         }
         
         test();
+
+        
     }
 
     [IFix.Patch]
@@ -75,13 +77,15 @@ public class Helloworld : MonoBehaviour {
         // 
         // StartCoroutine(this.DownloadFile("https://news.163.com/20/0513/10/FCGJENDE0001899O.html"));
 
-        UnityEngine.Debug.Log("test async errror");
-        Method1();
-        Method2();
+        // UnityEngine.Debug.Log("test async errror");
+        // Method1();
+        // Method2();
+
+        BPActor bpActor = this.GetComponent<BPActor>();
+        Common.Debug($"bpActor.GetHp2222 ==> {bpActor.GetHp2()}");
     }
 
-
-
+    
     /// <summary>
     /// 
     /// </summary>
@@ -123,7 +127,7 @@ public class Helloworld : MonoBehaviour {
     {  
         await Task.Run(() =>
         {  
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 2; i++)
             {  
                 UnityEngine.Debug.Log("Method 1 change 2!");
             }  
@@ -137,9 +141,9 @@ public class Helloworld : MonoBehaviour {
     // [IFix.Patch]
     public static void Method2()
     {  
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 2; i++)
         {  
             UnityEngine.Debug.Log(" Method 2 change 2!");
         }  
-    }  
+    }
 }

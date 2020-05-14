@@ -21,6 +21,7 @@ public class Init : MonoBehaviour
     public void Start()
     {
         // 1, 先初始化fairyGUI
+        FairyGUIHelper.Init();
 
         // 2, 
         Common.Debug($"init start");
