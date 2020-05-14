@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1334,750">
+  <displayList>
+    <image id="n1_tbe1" name="bg" src="tbe12" fileName="img/bg.jpg" xy="0,0" size="1334,750" alpha="0.3"/>
+    <component id="n0_tbe1" name="btn1" src="tbe11" fileName="button/Button1.xml" xy="1120,602">
+      <Button title="测试" titleFontSize="32"/>
+    </component>
+  </displayList>
+</component>

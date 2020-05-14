@@ -118,14 +118,14 @@ public class Helloworld : MonoBehaviour {
     /// 
     /// </summary>
     /// <returns></returns>
-    [IFix.Patch]
-    public static async Task Method1()
+    // [IFix.Patch]
+    public static async void Method1()
     {  
         await Task.Run(() =>
         {  
             for (int i = 0; i < 10; i++)
             {  
-                UnityEngine.Debug.Log("Method 1 change!");
+                UnityEngine.Debug.Log("Method 1 change 2!");
             }  
         });  
     }  
@@ -134,12 +134,12 @@ public class Helloworld : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    [IFix.Patch]
+    // [IFix.Patch]
     public static void Method2()
     {  
         for (int i = 0; i < 25; i++)
         {  
-            UnityEngine.Debug.Log(" Method 2 change!");  
+            UnityEngine.Debug.Log(" Method 2 change 2!");
         }  
     }  
 }
