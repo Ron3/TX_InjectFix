@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1334,750">
   <displayList>
-    <image id="n1_tbe1" name="bg" src="tbe12" fileName="img/bg.jpg" xy="0,0" size="1334,750" alpha="0.3"/>
-    <component id="n0_tbe1" name="btn1" src="tbe11" fileName="button/Button1.xml" xy="1120,602">
+    <image id="n1_tbe1" name="bg" src="tbe12" fileName="img/bg.jpg" xy="0,7" size="1334,750" alpha="0.3"/>
+    <component id="n0_tbe1" name="btn0" src="tbe11" fileName="button/Button1.xml" xy="1107,105" size="200,100">
+      <Button title="测试" titleFontSize="32"/>
+    </component>
+    <component id="n2_vre0" name="btn1" src="tbe11" fileName="button/Button1.xml" xy="1110,255">
+      <Button title="测试" titleFontSize="32"/>
+    </component>
+    <component id="n3_vre0" name="btn2" src="tbe11" fileName="button/Button1.xml" xy="1109,405" size="200,100">
+      <Button title="测试" titleFontSize="32"/>
+    </component>
+    <component id="n4_vre0" name="btn3" src="tbe11" fileName="button/Button1.xml" xy="1113,555" size="200,100">
       <Button title="测试" titleFontSize="32"/>
     </component>
   </displayList>

@@ -58,8 +58,11 @@ public class TestView
     /// </summary>
     public void InitUI()
     {
-        GButton btn = this.view.GetChild("btn1").asButton;
-        btn.onClick.Add(this.OnBtnClick);
+        for(int i = 0; i < 4; ++i)
+        {
+            GButton btn = this.view.GetChild($"btn{i}").asButton;
+            btn.onClick.Add(this.OnBtnClick);
+        }
     }
 
     /// <summary>
@@ -68,7 +71,8 @@ public class TestView
     /// <param name="context"></param>
     public void OnBtnClick(EventContext context)
     {
-        
+        GButton btn = context.sender as GButton;
+        Common.Debug($"sender ==> {btn.name}");
     }
 }
 
