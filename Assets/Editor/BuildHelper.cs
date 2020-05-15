@@ -79,15 +79,15 @@ namespace ETEditor
 
 			using (FileStream fileStream = new FileStream($"{dir}/Version.txt", FileMode.Create))
 			{
-				// byte[] bytes = JsonHelper.ToJson(versionProto).ToByteArray();
-				// fileStream.Write(bytes, 0, bytes.Length);
+				byte[] bytes = JsonHelper.ToJson(versionProto).ToByteArray();
+				fileStream.Write(bytes, 0, bytes.Length);
 
-				foreach(KeyValuePair<string, FileVersionInfo> pair in versionProto.FileInfoDict) 
-				{
-					string strFileInfo = JsonHelper.ToJson(pair.Value);
-					byte[] bytes = strFileInfo.ToByteArray();
-					fileStream.Write(bytes, 0, bytes.Length);
-				}
+				// foreach(KeyValuePair<string, FileVersionInfo> pair in versionProto.FileInfoDict) 
+				// {
+				// 	string strFileInfo = JsonHelper.ToJson(pair.Value);
+				// 	byte[] bytes = strFileInfo.ToByteArray();
+				// 	fileStream.Write(bytes, 0, bytes.Length);
+				// }
 			}
 		}
 

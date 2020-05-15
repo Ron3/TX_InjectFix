@@ -1,8 +1,21 @@
 using System.Collections.Generic;
-// using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel;
 
 namespace ETModel
 {
+	public abstract class ETObject: ISupportInitialize
+	{
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+
+		}
+	}
+
 	public class FileVersionInfo
 	{
 		public string File;
@@ -10,18 +23,18 @@ namespace ETModel
 		public long Size;
 	}
 
-	public class VersionConfig 
+	public class VersionConfig : ETObject
 	{
 		public int Version;
 		
 		public long TotalSize;
 		
-		// [BsonIgnore]
+		[BsonIgnore]
 		public Dictionary<string, FileVersionInfo> FileInfoDict = new Dictionary<string, FileVersionInfo>();
 
-		public void EndInit()
+		public override void EndInit()
 		{
-			// base.EndInit();
+			base.EndInit();
 
 			foreach (FileVersionInfo fileVersionInfo in this.FileInfoDict.Values)
 			{
