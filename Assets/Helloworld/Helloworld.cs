@@ -27,7 +27,7 @@ public class Helloworld : MonoBehaviour {
             UnityEngine.Debug.Log("patch Assembly-CSharp.patch, using " + sw.ElapsedMilliseconds + " ms");
         }
         
-        // //try to load patch for Assembly-CSharp-firstpass.dll
+        // try to load patch for Assembly-CSharp-firstpass.dll
         // patch = Resources.Load<TextAsset>("Assembly-CSharp-firstpass.patch");
         // if (patch != null)
         // {

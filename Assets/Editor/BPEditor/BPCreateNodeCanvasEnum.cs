@@ -28,7 +28,7 @@ namespace ETEditor
             // Debug.Log($"Current ====> {System.Environment.CurrentDirectory}");
             string path = System.Environment.CurrentDirectory;
             path = Path.Combine(path, "Assets/Res/Config/BPNodeCanvasTreeConfig.txt");
-            Debug.Log($"读取行为树的配置 Path ==> {path}");
+            // Debug.Log($"读取行为树的配置 Path ==> {path}");
 
             string data = "";
             System.IO.StreamReader fileObj = new System.IO.StreamReader(path);  
