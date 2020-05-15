@@ -15,6 +15,7 @@ public class Helloworld : MonoBehaviour {
 
     // check and load patchs
     void Start () {
+        
         VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
         //try to load patch for Assembly-CSharp.dll
         var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
@@ -25,6 +26,7 @@ public class Helloworld : MonoBehaviour {
             PatchManager.Load(new MemoryStream(patch.bytes));
             UnityEngine.Debug.Log("patch Assembly-CSharp.patch, using " + sw.ElapsedMilliseconds + " ms");
         }
+        
         // //try to load patch for Assembly-CSharp-firstpass.dll
         // patch = Resources.Load<TextAsset>("Assembly-CSharp-firstpass.patch");
         // if (patch != null)
