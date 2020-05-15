@@ -16,14 +16,17 @@ using System.Threading.Tasks;
 
 
 // 跑不同仔细看文档Doc/example.md
-public class Helloworld : MonoBehaviour {
-
+public class Helloworld : MonoBehaviour 
+{
     // check and load patchs
-    void Start () {
+    void Start () 
+    {
         VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
-        VirtualMachine.Info("xxxx");
-        //try to load patch for Assembly-CSharp.dll
-        var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
+
+        string assetBundleName = "code.unity3d";
+        string dllPath = "Assets/IFix/Resources/Assembly-CSharp.patch.bytes";
+        Common.LoadAssetBundle(assetBundleName);
+        UnityEngine.TextAsset patch = Common.GetAsset(assetBundleName, dllPath) as UnityEngine.TextAsset;
         if (patch != null)
         {
             UnityEngine.Debug.Log("loading Assembly-CSharp.patch ...");
@@ -31,15 +34,21 @@ public class Helloworld : MonoBehaviour {
             PatchManager.Load(new MemoryStream(patch.bytes));
             UnityEngine.Debug.Log("patch Assembly-CSharp.patch, using " + sw.ElapsedMilliseconds + " ms");
         }
-        //try to load patch for Assembly-CSharp-firstpass.dll
-        patch = Resources.Load<TextAsset>("Assembly-CSharp-firstpass.patch");
-        if (patch != null)
+        else
         {
-            UnityEngine.Debug.Log("loading Assembly-CSharp-firstpass ...");
-            var sw = Stopwatch.StartNew();
-            PatchManager.Load(new MemoryStream(patch.bytes));
-            UnityEngine.Debug.Log("patch Assembly-CSharp-firstpass, using " + sw.ElapsedMilliseconds + " ms");
+            Common.Error("load failed ...");
         }
+
+        // TODO Ron,我们暂时不需要测试firstpass.dll
+        //try to load patch for Assembly-CSharp-firstpass.dll
+        // patch = Resources.Load<TextAsset>("Assembly-CSharp-firstpass.patch");
+        // if (patch != null)
+        // {
+        //     UnityEngine.Debug.Log("loading Assembly-CSharp-firstpass ...");
+        //     var sw = Stopwatch.StartNew();
+        //     PatchManager.Load(new MemoryStream(patch.bytes));
+        //     UnityEngine.Debug.Log("patch Assembly-CSharp-firstpass, using " + sw.ElapsedMilliseconds + " ms");
+        // }
         
         test();
 
@@ -50,8 +59,6 @@ public class Helloworld : MonoBehaviour {
     void test()
     {
         var calc = new IFix.Test.Calculator();
-        calc.RonTestFun();
-        calc.RonLogItemInfo();
         UnityEngine.Debug.Log("10 + 9 = " + calc.Add(10, 9));
         //test calc.Sub
         UnityEngine.Debug.Log("10 - 2 = " + calc.Sub(10, 2));

@@ -96,7 +96,6 @@ public static class Common
         
         AssetBundleDict[path] = assetBundle;
         AssetBundleDictForNameKey[abName] = assetBundle;
-        Common.Debug($"AssetBundleDict ==> {AssetBundleDict.Count}");
 
         // 把每一个对象资源都加载进来放到cache里面去
         string[] assetPaths = assetBundle.GetAllAssetNames();
@@ -155,5 +154,40 @@ public static class Common
         dict[assetName] = resource;
     }
 
+
+    /// <summary>
+    /// 加载资源的总入口
+    /// </summary>
+    /// <param name="bundleName"></param>
+    /// <param name="prefab"></param>
+    /// <returns></returns>
+    public static UnityEngine.Object GetAsset(string bundleName, string prefab)
+    {
+        // by Ron 2019-06-26. 底层全部转成小写. 
+        prefab = prefab.ToLower();
+        bundleName = bundleName.ToLower();
+        UnityEngine.Object resource = null;
+
+        // 1, 找到缓存dict, 如果没有不要抛出异常
+        Dictionary<string, UnityEngine.Object> dict;
+        ResourceCache.TryGetValue(bundleName, out dict);
+
+        // 2, 从缓存中加载资源
+        if (dict != null && dict.TryGetValue(prefab, out resource) == false)
+        {
+            // 2019-06-14 兼容原来不带路径与后缀的查找
+            // 如果匹配不到绝对路径，则查找不带路径与后缀的文件名
+            foreach(string nameKey in dict.Keys)
+            {
+                if(Path.GetFileNameWithoutExtension(nameKey).Equals(prefab))
+                {
+                    dict.TryGetValue(nameKey, out resource);
+                    break;
+                }
+            }
+        }
+
+        return resource;
+    }
 }
 

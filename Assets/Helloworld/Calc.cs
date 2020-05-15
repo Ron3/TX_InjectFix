@@ -33,7 +33,7 @@ namespace IFix.Test
         int loopNum = 1000000;
 
         //修改成正确的逻辑后，打开如下注释，生成的补丁将修正该函数
-        // [Patch]
+        [Patch]
         public int Add(int a, int b)
         {
             // return a + b;
@@ -77,7 +77,7 @@ namespace IFix.Test
         // [Patch]
         public void RonTestFun()
         {
-            this.itemInfo = new ItemInfo(1001, "黑珍珠项链", "攻击力+10000的神器!");
+            this.itemInfo = new ItemInfo(1002, "黑珍珠项链", "攻击力+10000的神器!");
             UnityEngine.Debug.Log("创建itemInfo成功[1]");
         }
 
