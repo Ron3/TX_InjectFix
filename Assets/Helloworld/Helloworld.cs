@@ -18,13 +18,23 @@ public class Helloworld : MonoBehaviour
     // check and load patchs
     void Start () 
     {
-        string abName = "";
-        
+        this.StartAsync().Coroutine();
+    }
 
+    private async ETModel.ETVoid StartAsync()
+    {
+        DontDestroyOnLoad(gameObject);
+		// ETModel.Game.EventSystem.Add(ETModel.DLLType.Model, typeof(Helloworld).Assembly);
+
+        // 1, 初始化ET相关的一些东西
         ETModel.ResourcesComponent resCmop = ETModel.Game.Scene.AddComponent<ETModel.ResourcesComponent>();
-        
 
-        this.view = new TestView("", "");
+        // 2, 初始化FairyGUI
+        FairyGUIHelper.Init();
+        
+        // 3, 把FairyGUI显示出来
+        this.view = new TestView("tx", "view");
+        this.view.Show();
         
         
         VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
