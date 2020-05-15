@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+.vscode
+Assembly-CSharp-firstpass.patch.bytes
+Assembly-CSharp.patch.bytes
+Assembly-CSharp.patch.bytes.meta
