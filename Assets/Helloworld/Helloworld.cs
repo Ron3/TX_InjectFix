@@ -11,10 +11,21 @@ using System.IO;
 using System.Diagnostics;
 
 // 跑不同仔细看文档Doc/example.md
-public class Helloworld : MonoBehaviour {
+public class Helloworld : MonoBehaviour 
+{
+    public TestView view = null;
 
     // check and load patchs
-    void Start () {
+    void Start () 
+    {
+        string abName = "";
+        
+
+        ETModel.ResourcesComponent resCmop = ETModel.Game.Scene.AddComponent<ETModel.ResourcesComponent>();
+        
+
+        this.view = new TestView("", "");
+        
         
         VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
         //try to load patch for Assembly-CSharp.dll
