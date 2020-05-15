@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: move
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":-567.105,"y":-148.4465},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"actionId":1001,"metaData":"{\"Key\":
+    \"\u6267\u884c\u5b50AI2\u6811.\u5f00\u59cb\u653b\u51fb\"}","$type":"NodeCanvas.Tasks.Actions.BPActionShell"},"_position":{"x":-717.4832,"y":-32.97164},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"_action":{"actionId":1002,"metaData":"{\"range\":
+    6}","$type":"NodeCanvas.Tasks.Actions.BPActionShell"},"_position":{"x":-548.6286,"y":-22.49593},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"i_targetId":{"_name":"i_targetId","_id":"9ebdbaca-bf7d-45f0-8feb-ca8a0ac24bc6","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"i_targetType":{"_name":"i_targetType","_id":"a227d79c-de49-4685-85a7-05c1e5edc86d","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}},"derivedData":{"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences: []
+  _graphSource:
+    _version: 3.05
+    _category: 
+    _comments: 
+    _translation: {x: 717, y: 363}
+    _zoomFactor: 0.61532056
+  _haltSerialization: 0

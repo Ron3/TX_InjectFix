@@ -1,0 +1,15 @@
+{"Id":1001,"Name":"打印日志","Description":"打印一个Hello HotfixAction","ComponentName":"LogActionComponent", "ExampleMetaData":"{\"Key\": 1}"}
+{"Id":1002,"Name":"NPC巡逻","Description":"在某一个范围内游走.并且需要在Graph的黑板变量里.创建2个参数[i_targetId], [i_targetType]","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":1003,"Name":"朝着敌人移动准备攻击","Description":"朝着目标移动.只要属于攻击范围足够.就开始攻击","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":1004,"Name":"移动到目标附近","Description":"移动到目标附近.然后可能进行交谈/攻击等","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":1005,"Name":"跟我方目标角色交谈","Description":"跟我方目标角色交谈","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":1006,"Name":"攻击目标","Description":"攻击目标","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":1007,"Name":"切换行为树","Description":"切换执行另外一棵行为树","ComponentName":"ChangeTreeActionComponent", "ExampleMetaData": "{\"treeName\": \"battle.asset\"}"}
+{"Id":1008,"Name":"打印日志2","Description":"打印一个Hello HotfixAction","ComponentName":"LogActionComponent2", "ExampleMetaData":"日志2"}
+
+
+{"Id":20002,"Name":"Condition_判定是否可以攻击","Description":"是否在当前角色的攻击范围内2","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"destian\": 5}"}
+{"Id":20003,"Name":"Condition_判定目标是否是敌人","Description":"判定目标是否是敌人","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+{"Id":20004,"Name":"Condition_敌人是否已经死亡","Description":"判定敌人是否已经死亡","ComponentName":"LogActionComponent", "ExampleMetaData": "{\"range\": 5}"}
+
+{"Id":30001,"Name":"Composite_执行第一个","Description":"描述 Composite_执行第一个","ComponentName":"ExecuteFirstActionComponent", "ExampleMetaData": "不需要参数"}
