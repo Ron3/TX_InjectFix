@@ -1,6 +1,5 @@
 {
-	"auxline1": true,
-	"canvasColor": 10066329,
+	"libview.firstColumnWidth": 283,
 	"libview.expandedNodes": [
 		"gzgmislh",
 		"/",
@@ -9,13 +8,14 @@
 		"gzgmislh",
 		"/img/"
 	],
-	"auxline2": true,
+	"auxline1": true,
 	"libview.currentGroup": "",
-	"doc.activeDoc": "ui://gzgmislhg0wa0",
+	"libview.twoColumn": false,
+	"canvasColor": 10066329,
 	"doc.openedDocs": [
 		"ui://gzgmislhg0wa0"
 	],
-	"libview.twoColumn": false,
-	"libview.firstColumnWidth": 283,
+	"auxline2": true,
+	"doc.activeDoc": "ui://gzgmislhg0wa0",
 	"backgroundColor": 6710886
 }

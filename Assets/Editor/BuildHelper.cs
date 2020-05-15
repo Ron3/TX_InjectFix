@@ -1,6 +1,8 @@
 using System.IO;
 using ETModel;
 using UnityEditor;
+using System.Collections.Generic;
+
 
 namespace ETEditor
 {
@@ -79,6 +81,13 @@ namespace ETEditor
 			{
 				// byte[] bytes = JsonHelper.ToJson(versionProto).ToByteArray();
 				// fileStream.Write(bytes, 0, bytes.Length);
+
+				foreach(KeyValuePair<string, FileVersionInfo> pair in versionProto.FileInfoDict) 
+				{
+					string strFileInfo = JsonHelper.ToJson(pair.Value);
+					byte[] bytes = strFileInfo.ToByteArray();
+					fileStream.Write(bytes, 0, bytes.Length);
+				}
 			}
 		}
 
@@ -86,8 +95,7 @@ namespace ETEditor
 		{
 			foreach (string file in Directory.GetFiles(dir))
 			{
-				// string md5 = MD5Helper.FileMD5(file);
-                string md5 = "aaa";
+				string md5 = MD5Helper.FileMD5(file);
 				FileInfo fi = new FileInfo(file);
 				long size = fi.Length;
 				string filePath = relativePath == "" ? fi.Name : $"{relativePath}/{fi.Name}";
