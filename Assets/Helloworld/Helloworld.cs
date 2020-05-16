@@ -24,10 +24,16 @@ public class Helloworld : MonoBehaviour
     private async ETModel.ETVoid StartAsync()
     {
         DontDestroyOnLoad(gameObject);
-		// ETModel.Game.EventSystem.Add(ETModel.DLLType.Model, typeof(Helloworld).Assembly);
-
         // 1, 初始化ET相关的一些东西
         ETModel.ResourcesComponent resCmop = ETModel.Game.Scene.AddComponent<ETModel.ResourcesComponent>();
+        // Game.Scene.AddComponent<NetOuterComponent>();
+		// ETModel.Game.EventSystem.Add(ETModel.DLLType.Model, typeof(Helloworld).Assembly);
+
+        // 下载ab包
+        await ETModel.BundleHelper.DownloadBundle();
+
+        
+        resCmop.LoadBundle("code.unity3d");
 
         // 2, 初始化FairyGUI
         FairyGUIHelper.Init();
@@ -39,7 +45,9 @@ public class Helloworld : MonoBehaviour
         
         VirtualMachine.Info = (s) => ETModel.Log.Debug(s);
         //try to load patch for Assembly-CSharp.dll
-        var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
+        // var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
+        string dllPath = "Assets/Resources/Assembly-CSharp.patch.bytes";
+        var patch = resCmop.GetAsset("code.unity3d", dllPath) as TextAsset;
         if (patch != null)
         {
             ETModel.Log.Debug("loading Assembly-CSharp.patch ...");
@@ -61,7 +69,7 @@ public class Helloworld : MonoBehaviour
         test();
     }
 
-
+    
     [IFix.Patch]
     void test()
     {

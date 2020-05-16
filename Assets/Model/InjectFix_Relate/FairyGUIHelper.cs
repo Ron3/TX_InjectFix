@@ -26,12 +26,15 @@ public static class  FairyGUIHelper
 #else           
         
             ETModel.Log.Debug("采用ab包加载FairyGUI包资源");
-            string descBundleName = "tx_injectfixfgui_des.unity3d";
-            string resBundleName = "tx_injectfixfgui_res.unity3d";
-            Common.LoadAssetBundle(descBundleName);
-            Common.LoadAssetBundle(resBundleName);
-            AssetBundle descBundleObj = Common.GetAssetBundle(descBundleName);
-            AssetBundle resBundleObj = Common.GetAssetBundle(resBundleName);
+            // string descBundleName = "tx_injectfixfgui_des.unity3d";
+            // string resBundleName = "tx_injectfixfgui_res.unity3d";
+            ETModel.Log.Debug(desAbName);
+            ETModel.Log.Debug(resAbName);
+            // AssetBundle descBundleObj = Common.GetAssetBundle(descBundleName);
+            // AssetBundle resBundleObj = Common.GetAssetBundle(resBundleName);
+            AssetBundle descBundleObj = resComp.GetAssetBundle(desAbName);
+            AssetBundle resBundleObj = resComp.GetAssetBundle(resAbName);
+
             ETModel.Log.Debug("descBundleObj ==> " + descBundleObj.name);
             ETModel.Log.Debug("resBundleObj ==> " + resBundleObj.name);
             UIPackage packageObj = UIPackage.AddPackage(descBundleObj, resBundleObj);

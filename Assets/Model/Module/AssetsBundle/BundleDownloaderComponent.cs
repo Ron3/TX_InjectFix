@@ -65,8 +65,8 @@ namespace ETModel
 			{
 				using (UnityWebRequestAsync webRequestAsync = ComponentFactory.Create<UnityWebRequestAsync>())
 				{
-					versionUrl = GlobalConfigComponent.Instance.GlobalProto.GetUrl() + "StreamingAssets/" + "Version.txt";
-					//Log.Debug(versionUrl);
+					versionUrl = ETModel.GlobalProto.StaticGetUrl() + "StreamingAssets/" + "Version.txt";
+					Log.Debug($"更新地址 ===> {versionUrl}");
 					await webRequestAsync.DownloadAsync(versionUrl);
 					remoteVersionConfig = JsonHelper.FromJson<VersionConfig>(webRequestAsync.Request.downloadHandler.text);
 					//Log.Debug(JsonHelper.ToJson(this.VersionConfig));
@@ -116,6 +116,7 @@ namespace ETModel
 			foreach (FileVersionInfo fileVersionInfo in remoteVersionConfig.FileInfoDict.Values)
 			{
 				// 对比md5
+				// ETModel.Log.Debug($"fileVersionInfo ===> {fileVersionInfo.File}");
 				string localFileMD5 = BundleHelper.GetBundleMD5(streamingVersionConfig, fileVersionInfo.File);
 				if (fileVersionInfo.MD5 == localFileMD5)
 				{
@@ -173,7 +174,8 @@ namespace ETModel
 						{
 							using (this.webRequest = ComponentFactory.Create<UnityWebRequestAsync>())
 							{
-								await this.webRequest.DownloadAsync(GlobalConfigComponent.Instance.GlobalProto.GetUrl() + "StreamingAssets/" + this.downloadingBundle);
+								string tmpPath = ETModel.GlobalProto.StaticGetUrl() + "StreamingAssets/" + this.downloadingBundle;
+								await this.webRequest.DownloadAsync(tmpPath);
 								byte[] data = this.webRequest.Request.downloadHandler.data;
 
 								string path = Path.Combine(PathHelper.AppHotfixResPath, this.downloadingBundle);
