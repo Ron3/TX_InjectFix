@@ -7,6 +7,7 @@ public class TestView
     public string xmlSettingName;
     public string packageName;
     public GComponent view;
+    public long countFrame = 0;
 
     /// <summary>
     /// 
@@ -73,6 +74,33 @@ public class TestView
     {
         GButton btn = context.sender as GButton;
         // Common.Debug($"sender ==> {btn.name}");
+    }
+
+
+    /// <summary>
+    /// unity每一次update都会调用到这里来
+    /// </summary>
+    public void Update()
+    {
+        if(this.view == null)
+            return;
+
+        this.countFrame += 1;
+        if(this.countFrame % 20 == 0)        
+        {
+            this._updateViewLog();    
+        }
+    }
+
+
+    /// <summary>
+    /// 更新界面的Log
+    /// </summary>
+    public void _updateViewLog()
+    {
+        GComponent textView = this.view.GetChild("textView").asCom;
+        GTextField textObj = textView.GetChild("text").asTextField;
+        textObj.text = ETModel.Log.logMsg;
     }
 }
 

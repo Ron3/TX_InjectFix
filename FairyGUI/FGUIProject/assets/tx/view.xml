@@ -14,5 +14,6 @@
     <component id="n4_vre0" name="btn3" src="tbe11" fileName="button/Button1.xml" xy="1113,555" size="200,100">
       <Button title="测试" titleFontSize="32"/>
     </component>
+    <component id="n9_le1j" name="textView" src="8du83" fileName="textView.xml" xy="32,32"/>
   </displayList>
 </component>

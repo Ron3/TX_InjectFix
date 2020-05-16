@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1000,700" overflow="scroll">
+  <displayList>
+    <text id="n0_le1j" name="text" xy="10,4" size="965,932" fontSize="24" ubb="true" autoSize="none" autoClearText="true" text="[color=#FF4040]文字[/color]"/>
+  </displayList>
+</component>

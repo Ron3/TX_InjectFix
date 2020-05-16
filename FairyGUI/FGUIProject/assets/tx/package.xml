@@ -4,6 +4,7 @@
     <component id="g0wa0" name="view.xml" path="/" exported="true"/>
     <component id="tbe11" name="Button1.xml" path="/button/"/>
     <image id="tbe12" name="bg.jpg" path="/img/"/>
+    <component id="8du83" name="textView.xml" path="/"/>
   </resources>
   <publish name="tx" path="/Users/ron/Documents/Work/MyPractise/TX_InjectFix/Assets/Res/fairygui" packageCount="2"/>
 </packageDescription>

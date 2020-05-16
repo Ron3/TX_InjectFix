@@ -37,15 +37,15 @@ public class Helloworld : MonoBehaviour
         this.view.Show();
         
         
-        VirtualMachine.Info = (s) => UnityEngine.Debug.Log(s);
+        VirtualMachine.Info = (s) => ETModel.Log.Debug(s);
         //try to load patch for Assembly-CSharp.dll
         var patch = Resources.Load<TextAsset>("Assembly-CSharp.patch");
         if (patch != null)
         {
-            UnityEngine.Debug.Log("loading Assembly-CSharp.patch ...");
+            ETModel.Log.Debug("loading Assembly-CSharp.patch ...");
             var sw = Stopwatch.StartNew();
             PatchManager.Load(new MemoryStream(patch.bytes));
-            UnityEngine.Debug.Log("patch Assembly-CSharp.patch, using " + sw.ElapsedMilliseconds + " ms");
+            ETModel.Log.Debug("patch Assembly-CSharp.patch, using " + sw.ElapsedMilliseconds + " ms");
         }
         
         // try to load patch for Assembly-CSharp-firstpass.dll
@@ -61,14 +61,15 @@ public class Helloworld : MonoBehaviour
         test();
     }
 
+
     [IFix.Patch]
     void test()
     {
         var calc = new IFix.Test.Calculator();
         //test calc.Add
-        UnityEngine.Debug.Log("10 + 9 = " + calc.Add(10, 9));
+        ETModel.Log.Debug("10 + 9 = " + calc.Add(10, 9));
         //test calc.Sub
-        UnityEngine.Debug.Log("10 - 2 = " + calc.Sub(10, 2));
+        ETModel.Log.Debug("10 - 2 = " + calc.Sub(10, 2));
 
         // var anotherClass = new AnotherClass(1);
         // //AnotherClass in Assembly-CSharp-firstpass.dll
@@ -78,14 +79,27 @@ public class Helloworld : MonoBehaviour
         //test for InjectFix/Fix(Android) InjectFix/Fix(IOS) Menu for unity 2018.3 or newer
 #if UNITY_2018_3_OR_NEWER
 #if UNITY_IOS
-        UnityEngine.Debug.Log("UNITY_IOS");
+        ETModel.Log.Debug("UNITY_IOS");
 #endif
 #if UNITY_EDITOR
-        UnityEngine.Debug.Log("UNITY_EDITOR");
+        ETModel.Log.Debug("UNITY_EDITOR");
 #endif
 #if UNITY_ANDROID
-        UnityEngine.Debug.Log("UNITY_ANDROID");
+        ETModel.Log.Debug("UNITY_ANDROID");
 #endif
 #endif
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void Update()
+    {
+        if(this.view != null)
+        {
+            this.view.Update();
+        }
+    }
 }
+

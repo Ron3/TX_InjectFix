@@ -23,6 +23,7 @@ public class HelloworldCfg
             {
                 typeof(Helloworld),
                 typeof(IFix.Test.Calculator),
+                typeof(TestView),
                 
                 // 我们这里没这个需求.而且这个的做法跟其他地方新增类是一样的.
                 // AnotherClass在Pro Standard Assets下，会编译到Assembly-CSharp-firstpass.dll下，用来演示多dll的修复
